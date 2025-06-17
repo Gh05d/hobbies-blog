@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="audiotravelguide.eu" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>Audio Travel Guide | Search Results</title>
+
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/index.css" />
+    <link rel="stylesheet" href="assets/styles/search.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"
+    ></script>
+    <script type="module" src="assets/search.mjs"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" id="title">🏠 Audio Travel Guide</a>
+      <hr />
+    </header>
+
+    <main>
+      <h1>Search Results</h1>
+      <search>
+        <input
+          id="search"
+          type="search"
+          name="query"
+          placeholder="Search posts…"
+          disabled
+      /></search>
+
+      <div id="loading">Loading...</div>
+      <section id="results"></section>
+    </main>
+
+    <footer>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li>
+            <a rel="nofollow" href="/privacy-policy.html">Privacy Policy</a>
+          </li>
+          <li><a rel="nofollow" href="/contact.html">Contact</a></li>
+          <li><a rel="nofollow" href="/about-us.html">About Us</a></li>
+          <li><a rel="nofollow" href="/imprint.html">Imprint</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2025 Audio Travel Guide. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

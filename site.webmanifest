@@ -1,0 +1,42 @@
+{
+    "id": "/index.html",
+    "name": "Audio Travel Guide",
+    "short_name": "TravelGuide",
+    "start_url": "/index.html",
+    "description": "Your ultimate travel companion for exploring the world with guides, tips, and inspiration.",
+    "dir": "ltr",
+    "lang": "en-US",
+    "orientation": "portrait",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#e4d7d7",
+    "theme_color": "#005fcc",
+    "icons": [
+        {
+            "src": "/assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/assets/hero-desktop.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Audio Travel Guide on desktop"
+        },
+        {
+            "src": "/assets/hero-phone.png",
+            "sizes": "360x640",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Audio Travel Guide on mobile"
+        }
+    ]
+}

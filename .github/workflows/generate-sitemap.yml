@@ -1,0 +1,70 @@
+name: update-sitemap
+
+on:
+  push:
+    paths:
+      - 'articles/**'
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate sitemap
+        id: sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://audiotravelguide.eu/
+          path-to-root: .       
+          include-pdf: false           
+          drop-html-extension: true    
+          date-only: true
+
+      - name: Install xmlstarlet
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xmlstarlet
+
+      - name: Update dates in sitemap
+        run: |
+          for html in articles/*.html; do
+              datetime=$(grep -oP '<time[^>]*datetime="\K[^"]+' "$html")
+              slug=$(basename "$html" .html)
+              xmlstarlet ed -L \
+                -N sm="http://www.sitemaps.org/schemas/sitemap/0.9" \
+                -u "/sm:urlset/sm:url[sm:loc='https://audiotravelguide.eu/articles/$slug']/sm:lastmod" \
+                -v "$datetime" \
+                sitemap.xml
+            done
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: master
+          add-paths: sitemap.xml
+          commit-message: "chore: update sitemap.xml"
+          title: "chore: automated sitemap update"
+          body: "This PR updates sitemap.xml with all current articles."
+          branch: automated/sitemap-update
+          delete-branch: true
+
+      - name: Verify branch existence
+        run: |
+          git fetch origin
+          if ! git show-ref --verify --quiet refs/heads/automated/sitemap-update; then
+            echo "Branch automated/sitemap-update does not exist, pushing..."
+            git push origin automated/sitemap-update
+          fi
+
+      - name: Enable Auto‑Merge
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: merge
+
